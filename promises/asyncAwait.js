@@ -12,7 +12,24 @@ Then check the promise (consume the promise).
 */
 
 //Define the weather.
-
+let weather = 'sunny'
 //Create a promise.
-
+const party = () => {
+  return new Promise((resolve, reject) => {
+    if (weather !== 'raining') {
+      resolve('party in the park')
+    } else {
+      reject('party in the apartment')
+    }
+  })
+}
 //Consume the promise using async...await.
+const partyLocation = async () => {
+  try {
+    let location = await party()
+    console.log(location)
+  } catch (err) {
+    console.log(err)
+  }
+}
+partyLocation()

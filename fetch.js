@@ -3,6 +3,21 @@ const getBtn = document.getElementById("get-btn");
 const postBtn = document.getElementById("post-btn");
 
 // 1. Create a fetch GET method: create a function called getData
+const getData = () => {
+  fetch('https://reqres.in/api/users?page=2')
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('request failed')
+    })
+    .then((data) => {
+      console.log(data)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
 
 // hints: optional, can do on your own if you want
 // use fetch to call the following address: https://reqres.in/api/users?page=2
@@ -23,6 +38,29 @@ const postBtn = document.getElementById("post-btn");
 // also check for a networkError
 // then, it should take the response if the above was successful and return it. Don't forget to console log the reponse to see it on the browser console.
 
+
+const sendData = () => {
+  fetch('https://reqres.in/api/users', {
+    method: 'POST',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      "name": "Yue",
+      "job": "frontend developer"
+    })
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('request failed')
+    }, (networkError) => {
+      console.log(networkError.message)
+    }
+    )
+    .then(jsonResponse => {
+      console.log(jsonResponse)
+    })
+}
 // Buttons eventListeners
 getBtn.addEventListener("click", getData);
 postBtn.addEventListener("click", sendData);

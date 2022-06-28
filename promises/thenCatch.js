@@ -12,7 +12,34 @@ Then check the promise (consume the promise).
 */
 
 //Define the weather.
-
+let weather = 'cloudy'
 //Create a promise.
+const myFirstPromise = new Promise((resolve, reject) => {
+  if (weather !== 'raining') {
+    resolve('party in the park')
+  } else {
+    reject('party in the apartment')
+  }
+})
 
+console.log(myFirstPromise)
+const party = () => {
+  return new Promise((resolve, reject) => {
+    if (weather !== 'raining') {
+      resolve('party in the park')
+    } else {
+      reject('party in the apartment')
+    }
+  })
+}
 //Consume the promise using then() and catch().
+party()
+  .then(
+    (fulfilled) => {
+      console.log(fulfilled)
+    }
+  ).catch(
+    (err) => {
+      console.log(err)
+    }
+  )
